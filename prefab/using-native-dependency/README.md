@@ -1,26 +1,38 @@
-# curl-ssl
+# using native dependency
 
-The curl-ssl sample shows how to import native dependencies from Maven. This
-sample uses [curl], [OpenSSL], and [JsonCpp] to display a list of the most
-recent 10 reviews submitted to AOSP's code review system.
+This sample shows how to import [C/C++ dependencies], which are C/C++ libraries packed with [Prefab]
+format inside AAR, from Maven to your Android project.
 
-To use [Prefab] with Android Gradle Plugin 4.0+, simply follow these 3 steps:
+[Prefab] is enabled from Android Gradle Plugin 4.0+. In roder to use the feature,
+simply follow these 3 steps:
 
 * Enable the prefab feature in [gradle.properties]
-* Declare the dependencies in the app module's [build.gradle]
+* Declare the dependencies in the app module's [build.gradle] in the same way you as would do with Kotlin/Java
+  dependencies.
 * Add the dependencies into the native module's [android.mk] or [CMakeLists.txt]
 
-From here on, the headers and native libs in the dependencies are [ready to use]!
+From here on, the [headers] and [libraries] in the dependencies are available for your native build system!
 
+If you want to understand more about C/C++ dependency AARs, unzip the AAR, check out the `prefab` directory;
+you could also refer to [C/C++ dependencies] page for Android Prefab formal documentation.
+
+The sample uses [curl], [OpenSSL], and [JsonCpp] dependencies to display a list of the most
+recent 10 reviews submitted to AOSP's code review system.
+
+[C/C++ dependencies]:https://developer.android.com/studio/build/native-dependencies?buildsystem=cmake&agpversion=4.0
 [Prefab]:https://google.github.io/prefab/
+[AGP]:https://google.github.io/android-gradle-dsl/current
+[android-library]:https://developer.android.com/studio/projects/android-library#AddDependency
+[android-dependencies]:https://developer.android.com/studio/build/dependencies
+[gradle.properties]:https://github.com/android/ndk-samples/blob/master/prefab/prefab-using/gradle.properties#L22
+[build.gradle]:https://github.com/android/ndk-samples/blob/master/prefab/prefab-using/app/build.gradle#L64
+[android.mk]:https://github.com/android/ndk-samples/blob/master/prefab/prefab-using/app/src/main/cpp/Android.mk#L32
+[CMakeLists.txt]:https://github.com/android/ndk-samples/blob/master/prefab/prefab-using/app/src/main/cpp/CMakeLists.txt#L20
+[headers]:https://github.com/android/ndk-samples/blob/main/prefab/prefab-using/app/src/main/cpp/app.cpp#L24
+[libraries]:https://github.com/android/ndk-samples/blob/master/prefab/prefab-using/app/src/main/cpp/CMakeLists.txt#L26
 [curl]: https://curl.haxx.se/  
 [OpenSSL]: https://www.openssl.org/  
 [JsonCpp]: https://github.com/open-source-parsers/jsoncpp
-[gradle.properties]:https://github.com/android/ndk-samples/blob/master/prefab/curl-ssl/gradle.properties#L22
-[build.gradle]:https://github.com/android/ndk-samples/blob/master/prefab/curl-ssl/app/build.gradle#L64
-[android.mk]:https://github.com/android/ndk-samples/blob/master/prefab/curl-ssl/app/src/main/cpp/Android.mk#L32
-[CMakeLists.txt]:https://github.com/android/ndk-samples/blob/master/prefab/curl-ssl/app/src/main/cpp/CMakeLists.txt#L20
-[ready to use]:https://github.com/android/ndk-samples/blob/master/prefab/curl-ssl/app/src/main/cpp/CMakeLists.txt#L26
 
 
 ## Pre-requisites
